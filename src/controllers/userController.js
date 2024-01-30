@@ -5,6 +5,8 @@ const { nullCredentials, isPasswordShort } = "../utils/users";
 const { randomToken, TemplateGenerator } = require("../utils/password_reset");
 const { createMessage } = require("../functions/email-gateway");
 const { validateUserCategoryFields } = require("../utils/validators")
+
+
 exports.registerUser = async (req, res) => {
   try {
     if (nullCredentials(req.body)) {

@@ -12,11 +12,11 @@ const calculatePercentage = (x, y) => {
 
 exports.BalanceUpdate = async (
   percentage,
-  cash_in_hand,
+  cash_in_hand,                                                                              
   account_ammount,
   user_id
 ) => {
-  const bal_from_account = calculatePercentage(percentage, account_ammount);
+  const bal_from_account = calculatePercentage(percentage, account_ammount);  //deducting balance from account on basis of allocated percentage
   const bal_from_cash = calculatePercentage(percentage, cash_in_hand);
 
   const result = (percentage / 100) * (bal_from_account + bal_from_cash);
@@ -25,14 +25,14 @@ exports.BalanceUpdate = async (
 
   if (newFinances) {
     let updatedCashInHand = newFinances.cash_in_hand - bal_from_cash;
-    let updatedAccountAmount = newFinances.account_ammount - bal_from_account;
+    let updatedAccountAmount = newFinances.account_ammount - bal_from_account;    //checking if account balance has become zero to avoid negative values to go into db
 
     updatedCashInHand = updatedCashInHand < 0 ? 0 : updatedCashInHand;
     updatedAccountAmount = updatedAccountAmount < 0 ? 0 : updatedAccountAmount;
 
     newFinances = await Finances.findOneAndUpdate(
       { user: user_id },
-      {
+      {                                                                              //fnally andding santized values to the database
         $inc: {
           savings_account: result,
           cash_in_hand: updatedCashInHand - newFinances.cash_in_hand,

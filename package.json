@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon",
-    "autogen_docs": "node swagger_autogen.js"
+    "dev": "nodemon"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +15,7 @@
     "axios": "^1.6.5",
     "cors": "^2.8.5",
     "dotenv": "^16.3.2",
+    "esprima": "4.0.1",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "mongoose": "^8.1.0",
@@ -23,9 +23,7 @@
     "nodemailer": "^6.9.8",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^8.0.0",
-    "swagger-autogen": "^2.23.7",
-    "swagger-jsdoc": "^6.2.8",
+    "swagger-jsdoc": "6.2.0",
     "swagger-ui-express": "^5.0.0"
   }
 }

@@ -14,7 +14,7 @@ const { updateAccounts } = require('./src/functions/dataFetch');
 
 require('dotenv').config();
 const swaggerui = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+const swaggerDocument = require('./swagger_config');
 
 
 
@@ -50,19 +50,18 @@ app.use('/api/docs', swaggerui.serve, swaggerui.setup(swaggerDocument));
 
 
 function logMessage(job) {
-  console.log(`${"[CRON (Balance Adjust)] :"} executed at:`, new Date().toLocaleString());
+  console.log(`${"[CRON JOB] :"} executed at:`, new Date().toLocaleString());
   }
 
 
 
 cron.schedule('0 0 1 * *', () => {
   logMessage("getUsersWithAllFields");
+
    
     updateAccounts(); //cron running to update balances of users to run every month.
 
 });
-
-
 
 
 
